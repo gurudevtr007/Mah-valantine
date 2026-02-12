@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Love OS - Guru ❤️ Jojesha</title>
 
+<style>
+body{
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  text-align:center;
+  color:white;
+  overflow-x:hidden;
+}
+
+.page{display:none;padding:40px;animation:fade 0.5s;}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+button{
+  padding:12px 25px;
+  margin:10px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  background:white;
+  color:#ff4b6e;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+
+input{
+  padding:12px;
+  border-radius:20px;
+  border:none;
+  text-align:center;
+}
+
+img{
+  width:220px;
+  border-radius:15px;
+  margin:10px;
+}
+
+.heart{
+  position:fixed;
+  animation:float 5s linear infinite;
+}
+
+@keyframes float{
+0%{transform:translateY(100vh);opacity:1;}
+100%{transform:translateY(-10vh);opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PASSWORD SCREEN -->
+<div id="login" class="page" style="display:block;">
+<h1>🔐 Private Love OS</h1>
+<h2>Enter Password</h2>
+<input type="password" id="passwordInput" placeholder="Enter password">
+<br><br>
+<button onclick="checkPassword()">Unlock ❤️</button>
+<p id="error" style="color:yellow;"></p>
+</div>
+
+<!-- HOME -->
+<div id="home" class="page">
+<h1>Welcome Jojesha ❤️</h1>
+<h3>Made with love by Guru</h3>
+
+<button onclick="showPage('letters')">💌 Love Letters</button>
+<button onclick="showPage('memories')">📸 Memories</button>
+<button onclick="showPage('music')">🎵 Our Song</button>
+<button onclick="showPage('secret')">💖 Secret</button>
+</div>
+
+<!-- LETTERS -->
+<div id="letters" class="page">
+<h1>Love Letters 💌</h1>
+<p>You are my peace, my happiness, my forever.</p>
+<p>From the day you came into my life, everything feels magical.</p>
+<p>I promise to love you more every single day.</p>
+<button onclick="showPage('home')">⬅ Back</button>
+</div>
+
+<!-- MEMORIES -->
+<div id="memories" class="page">
+<h1>Our Memories 📸</h1>
+<p>Replace these with our real photos</p>
+<img src="https://via.placeholder.com/220">
+<img src="https://via.placeholder.com/220">
+<button onclick="showPage('home')">⬅ Back</button>
+</div>
+
+<!-- MUSIC -->
+<div id="music" class="page">
+<h1>Our Song 🎵</h1>
+<audio id="bgMusic" controls loop>
+<source src="music.mp3" type="audio/mpeg">
+</audio>
+<br><br>
+<button onclick="showPage('home')">⬅ Back</button>
+</div>
+
+<!-- SECRET -->
+<div id="secret" class="page">
+<h1>Secret Message 💖</h1>
+<p>If you are reading this, I want you to know…</p>
+<p>No matter what happens in life, I will always choose you.</p>
+<p>In every lifetime, in every universe. ❤️</p>
+<button onclick="showPage('home')">⬅ Back</button>
+</div>
+
+<script>
+function checkPassword(){
+  var pass=document.getElementById("passwordInput").value;
+  if(pass==="jojesha"){
+    document.getElementById("login").style.display="none";
+    document.getElementById("home").style.display="block";
+    startHearts();
+    document.getElementById("bgMusic").play();
+  }else{
+    document.getElementById("error").innerText="Wrong password ❤️ Try again!";
+  }
+}
+
+function showPage(page){
+  var pages=document.getElementsByClassName("page");
+  for(var i=0;i<pages.length;i++){
+    pages[i].style.display="none";
+  }
+  document.getElementById(page).style.display="block";
+}
+
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=Math.random()*20+15+"px";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),5000);
+}
+
+function startHearts(){
+  setInterval(createHeart,300);
+}
+</script>
+
+</body>
+</html>
